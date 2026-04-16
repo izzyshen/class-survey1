@@ -15,8 +15,10 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:#f0f0f0;background:#0a0a1a
 #app{width:100vw;max-width:480px;height:100%;margin:0 auto;display:flex;flex-direction:column;position:relative;overflow:hidden;
   background:radial-gradient(ellipse at 30% 15%,rgba(123,47,247,.25),transparent 55%),
   radial-gradient(ellipse at 75% 85%,rgba(255,107,53,.3),transparent 55%),#0a0a1a}
-.screen{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;padding:clamp(40px,7vh,60px) clamp(16px,5vw,24px) clamp(24px,5vh,48px);opacity:0;transform:translateY(24px);animation:fadeUp .4s ease forwards;overflow-y:auto;-webkit-overflow-scrolling:touch;justify-content:safe center}
-.sc-spread{justify-content:space-evenly;padding-top:clamp(56px,11vh,90px);padding-bottom:clamp(48px,9vh,80px)}
+.screen{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;padding:clamp(40px,7vh,60px) clamp(16px,5vw,24px) clamp(24px,5vh,48px);opacity:0;transform:translateY(24px);animation:fadeUp .4s ease forwards;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.screen::before,.screen::after{content:'';flex:1 1 auto}
+.sc-spread{padding-top:clamp(56px,11vh,90px);padding-bottom:clamp(48px,9vh,80px)}
+.sc-spread::before,.sc-spread::after{flex:2 1 auto}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 @keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(255,107,53,.25)}50%{box-shadow:0 0 45px rgba(255,107,53,.55)}}

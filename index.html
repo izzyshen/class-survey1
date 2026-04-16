@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Things You Don't Know About Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;width:100%;min-width:100%}
+body{font-family:'DM Sans',system-ui,sans-serif;color:#f0f0f0;background:#0a0a1a;min-height:100dvh;overflow-y:auto;
+  padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);
+  padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+#app{width:100vw;max-width:480px;min-height:100dvh;margin:0 auto;display:flex;flex-direction:column;position:relative;
+  background:radial-gradient(ellipse at 30% 15%,rgba(123,47,247,.25),transparent 55%),
+  radial-gradient(ellipse at 75% 85%,rgba(255,107,53,.3),transparent 55%),#0a0a1a}
+.screen{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(40px,7vh,60px) clamp(16px,5vw,24px) clamp(24px,5vh,48px);opacity:0;transform:translateY(24px);animation:fadeUp .4s ease forwards}
+.sc-spread{justify-content:space-evenly;padding-top:clamp(56px,11vh,90px);padding-bottom:clamp(48px,9vh,80px)}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(255,107,53,.25)}50%{box-shadow:0 0 45px rgba(255,107,53,.55)}}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.progress{display:flex;gap:5px;padding:14px 24px;justify-content:center;position:absolute;top:0;left:0;right:0;z-index:10}
+.pdot{height:5px;border-radius:3px;transition:all .4s ease}
+.emoji{font-size:clamp(36px,8vw,52px);margin-bottom:clamp(8px,2vh,16px);animation:popIn .5s ease}
+.lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:10px}
+.lbl-o{color:#ff6b35}.lbl-p{color:#7b2ff7}
+h1.hero{font-family:'Anybody',sans-serif;font-weight:900;font-size:clamp(26px,7vw,42px);line-height:1.12;text-align:center;margin-bottom:clamp(10px,2vh,14px);background:linear-gradient(135deg,#ff6b35,#ffd166);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{font-size:clamp(14px,3.5vw,16px);color:#8888aa;line-height:1.5;text-align:center;max-width:340px;margin-bottom:clamp(20px,5vh,36px)}
+.q{font-family:'Anybody',sans-serif;font-weight:700;font-size:clamp(17px,4.5vw,23px);line-height:1.3;text-align:center;max-width:400px;margin-bottom:clamp(16px,3vh,24px)}
+.btn-go{font-family:'Anybody',sans-serif;font-weight:700;font-size:clamp(15px,4vw,17px);padding:14px 40px;border:none;border-radius:50px;background:linear-gradient(135deg,#ff6b35,#7b2ff7);color:#fff;cursor:pointer;animation:pulseGlow 2.5s ease infinite;-webkit-appearance:none}
+.btn-go:active{transform:scale(.96)}
+.btn-nxt{font-family:'Anybody',sans-serif;font-weight:700;font-size:clamp(14px,4vw,16px);padding:13px 36px;border:none;border-radius:50px;background:#ff6b35;color:#fff;cursor:pointer;-webkit-appearance:none}
+.btn-nxt:active{transform:scale(.96)}
+.btn-rst{font-family:'Anybody',sans-serif;font-weight:700;font-size:14px;padding:12px 32px;border:2px solid rgba(255,255,255,.15);border-radius:50px;background:transparent;color:#f0f0f0;cursor:pointer;-webkit-appearance:none}
+.btn-rst:active{background:rgba(255,255,255,.06);border-color:#ff6b35}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-bottom:clamp(12px,2vh,20px)}
+.gb{font-family:'Anybody',sans-serif;font-weight:700;font-size:clamp(15px,4vw,18px);padding:clamp(12px,2.5vh,18px) 10px;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.08);border-radius:14px;color:#f0f0f0;cursor:pointer;transition:all .25s;-webkit-appearance:none;line-height:1.2}
+.gb:active:not(.dis){transform:scale(.97)}
+.gb.ok{background:rgba(6,214,160,.15);border-color:#06d6a0}
+.gb.no{background:rgba(239,71,111,.15);border-color:#ef476f;animation:shake .4s ease}
+.gb.dis{cursor:default}.gb.dim{opacity:.4}
+.pl{display:flex;flex-direction:column;gap:8px;width:100%;margin-bottom:clamp(12px,2vh,20px)}
+.pb{position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;font-weight:500;font-size:clamp(13px,3.5vw,15px);padding:clamp(12px,2vh,16px) 16px;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.06);border-radius:14px;color:#f0f0f0;cursor:pointer;text-align:left;transition:all .25s;-webkit-appearance:none}
+.pb:active:not(.dis){transform:scale(.98)}
+.pb.sel{background:rgba(255,107,53,.1);border-color:#ff6b35}
+.pb.dis{cursor:default}
+.pbl{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center}
+.rvl{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px 16px;text-align:left;margin-bottom:clamp(12px,2vh,20px);animation:slideUp .35s ease}
+.rvl p{font-size:clamp(12px,3vw,14px);line-height:1.55;color:#8888aa}
+.rvl strong{color:#ffd166}
+.rc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:clamp(16px,3vh,24px) 18px;width:100%;margin-bottom:clamp(12px,2vh,20px);text-align:left}
+.rch{font-family:'Anybody';font-weight:700;font-size:14px;color:#ffd166;margin-bottom:14px}
+.rs{margin-bottom:14px}.rs:last-child{margin-bottom:0}
+.rsl{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#8888aa;margin-bottom:6px}
+.rsa{font-family:'Anybody';font-weight:700;font-size:clamp(13px,3.5vw,15px);color:#ff6b35;padding:8px 14px;background:rgba(255,107,53,.08);border-radius:10px;display:inline-block}
+.pit{background:linear-gradient(135deg,rgba(123,47,247,.14),rgba(255,107,53,.14));border:1px solid rgba(123,47,247,.2);border-radius:16px;padding:clamp(14px,2.5vh,20px);margin-bottom:clamp(14px,2.5vh,24px);width:100%}
+.pit p{font-size:clamp(13px,3.5vw,15px);line-height:1.55}.pit strong{color:#ffd166}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#06d6a0;margin-top:10px;animation:slideUp .3s ease}
+.skip-btn{opacity:.45;font-size:13px!important;padding:10px 14px!important;border-style:dashed!important}
+.name-input{width:100%;font-family:'DM Sans',sans-serif;font-size:clamp(16px,4vw,18px);padding:14px 18px;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.1);border-radius:14px;color:#f0f0f0;outline:none;-webkit-appearance:none;margin-bottom:clamp(16px,3vh,24px);transition:border-color .2s}
+.name-input:focus{border-color:#ff6b35}
+.name-input::placeholder{color:rgba(255,255,255,.25)}
+.btn-nxt:disabled{opacity:.3;cursor:default}
+.type-card{width:100%;border-radius:20px;overflow:hidden;margin-bottom:clamp(14px,2.5vh,20px);animation:slideUp .4s ease;box-shadow:0 8px 32px rgba(0,0,0,.45)}
+.char-area{width:100%;min-height:170px;display:flex;align-items:flex-end;justify-content:center;position:relative;overflow:hidden;padding-bottom:8px}
+.char-area-deco{position:absolute;inset:0;opacity:.18}
+.char-area-deco::before{content:'';position:absolute;top:-40%;left:-20%;width:140%;height:140%;border-radius:50%;background:rgba(255,255,255,.25)}
+.type-info-wrap{padding:clamp(12px,2.5vw,18px) 18px clamp(14px,2.5vw,20px);background:#f2f2fa;text-align:center}
+.type-sublabel{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#9090a8;margin-bottom:8px}
+.type-code{font-family:'Anybody',sans-serif;font-weight:900;font-size:clamp(42px,11vw,58px);letter-spacing:6px;line-height:1;margin-bottom:6px}
+.type-name{font-family:'Anybody',sans-serif;font-weight:700;font-size:clamp(16px,4vw,20px);color:#1a1a2e;margin-bottom:8px}
+.type-tag-pill{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:4px 13px;border-radius:20px;display:inline-block;margin-bottom:12px}
+.type-desc{font-size:clamp(12px,3vw,13.5px);color:#4a4a70;line-height:1.65;text-align:left}
+@media(max-height:680px){.char-area{min-height:140px}.type-code{font-size:38px}}
+@media(max-height:680px){
+  .screen{padding-top:36px;padding-bottom:12px}
+  .emoji{font-size:32px;margin-bottom:6px}
+  h1.hero{font-size:24px;margin-bottom:8px}
+  .sub{font-size:13px;margin-bottom:16px}
+  .q{font-size:16px;margin-bottom:12px}
+  .gg{gap:6px}.gb{padding:10px 8px;font-size:14px}
+  .pl{gap:6px}.pb{padding:10px 14px}
+  .rvl{padding:10px 14px;margin-bottom:10px}
+  .rc{padding:14px 16px}.rs{margin-bottom:10px}
+  .pit{padding:12px;margin-bottom:12px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var SHEET_URL = "<?= scriptUrl ?>";
+
+var SC = [
+  {t:"welcome"},
+  {t:"name"},
+  {t:"guess",e:"\uD83D\uDCB8",q:"How much does an influencer with 100K followers charge for ONE Instagram post?",o:["$250","$500","$1,000","$2,500"],c:2,
+   r:"And that\u2019s just the starting point \u2014 prices are totally opaque. Most brands have no idea if they\u2019re overpaying."},
+  {t:"guess",e:"\uD83D\uDCC8",q:"How much revenue does a single 100K-follower influencer post bring a brand?",o:["$500","$2,000","$5,000","$10,000"],c:2,
+   r:"The average ROI on influencer content is 5\u00D7 the spend \u2014 but only if you pick the right creator. Most brands are flying blind."},
+  {t:"guess",e:"\u23F0",q:"How many hours does a small brand spend finding & booking just ONE influencer?",o:["1 hour","5 hours","15+ hours","30+ hours"],c:2,
+   r:"Endless DMs, rate negotiations, contract back-and-forth \u2014 it\u2019s a full-time job nobody signed up for."},
+  {t:"guess",e:"\uD83D\uDEAA",q:"What % of small businesses say influencer marketing is \u201Ctoo expensive or complex\u201D to try?",o:["20%","40%","65%","80%"],c:2,
+   r:"The majority of businesses are locked out entirely. That\u2019s a massive untapped market."},
+  {t:"poll",e:"\uD83C\uDFE2",k:"biztype",q:"What best describes your business?",
+   o:["DTC / e-commerce brand","SaaS / B2B","Local business / services","I don\u2019t have a business yet"]},
+  {t:"poll",e:"\uD83C\uDFAF",k:"experience",q:"Have you ever tried to run an influencer marketing campaign?",
+   o:["Yes, for a brand/company","Yes, for a side project","No, but I\u2019ve wanted to","Never considered it"]},
+  {t:"poll",e:"\uD83E\uDDF1",k:"painpoint",sk:true,q:"What feels like the biggest barrier to influencer marketing?",
+   o:["Finding the right creators","Knowing what to pay","Measuring if it actually works","Too much manual work","Skip \u2192"]},
+  {t:"poll",e:"\uD83D\uDCE3",k:"reach",q:"How does your startup currently reach customers?",
+   o:["Organic / word of mouth","Paid ads (Meta, Google, etc.)","Cold outreach (email, DMs)","Influencer / creator partnerships"]},
+  {t:"reaction",e:"\uD83D\uDCA1",k:"reaction",q:"Imagine a personal marketing manager that maps your campaign, contacts creators directly, and only needs you to approve \u2014 fully hands-off.",
+   o:["\uD83E\uDD11 Take my money","\uD83E\uDD14 Intriguing...","\uD83E\uDDD0 I\u2019m skeptical","\uD83D\uDE45 Not for me"]},
+  {t:"poll",e:"\uD83D\uDCB0",k:"wtp",q:"What would you pay for an agent like this for your startup?",
+   o:["Free tier only","$50\u2013200/mo","$200\u2013500/mo","% of campaign spend"]},
+  {t:"results"}
+];
+
+var LBL={
+  biztype:["DTC / e-commerce","SaaS / B2B","Local / services","No business yet"],
+  experience:["For a brand/company","For a side project","Wanted to but haven\u2019t","Never considered it"],
+  painpoint:["Finding the right creators","Knowing what to pay","Measuring ROI","Too much manual work","Skipped"],
+  reach:["Organic / word of mouth","Paid ads","Cold outreach","Influencer partnerships"],
+  reaction:["Take my money!","Intriguing","Skeptical","Not for me"],
+  wtp:["Free only","$50\u2013200/mo","$200\u2013500/mo","% of spend"]};
+
+var TYPES=[
+  {icon:"\uD83D\uDE80",code:"GRHK",title:"The Growth Hacker",tag:"Peri Power User",
+   color:"#7b2ff7",palette:{light:"#b088f9",mid:"#7b2ff7",dark:"#4a15b8"},
+   desc:"You eat CAC for breakfast and dream in ROAS. You\u2019ve probably already Googled \u2018best influencer platforms\u2019 three times this week. Peri was literally built for you \u2014 welcome home."},
+  {icon:"\uD83D\uDCA1",code:"CUFD",title:"The Curious Founder",tag:"Peri Early Adopter",
+   color:"#3b82f6",palette:{light:"#7cb3f9",mid:"#3b82f6",dark:"#1d5dc0"},
+   desc:"You know influencer marketing works, you just haven\u2019t committed yet. Two things are true: you\u2019re going to try it eventually, and Peri will make you wish you started sooner."},
+  {icon:"\uD83E\uDDE0",code:"GRND",title:"The Cold Outreach Grinder",tag:"Peri Rescue Mission",
+   color:"#06b896",palette:{light:"#4adfc4",mid:"#06b896",dark:"#048c72"},
+   desc:"You\u2019ve been copy-pasting the same DM template into 200 creator inboxes. Your thumbs deserve better. Peri automates all of that \u2014 and actually gets replies."},
+  {icon:"\uD83C\uDF31",code:"ORGN",title:"The Organic Purist",tag:"Peri Skeptic-in-Progress",
+   color:"#22c55e",palette:{light:"#68e092",mid:"#22c55e",dark:"#15893f"},
+   desc:"You believe in authentic growth, which is noble. Peri respects that \u2014 we just skip the part where \u2018authentic\u2019 takes 6 months and a full-time social media manager."},
+  {icon:"\uD83E\uDD14",code:"LURK",title:"The Strategic Lurker",tag:"Show Me the Data Type",
+   color:"#ff6b35",palette:{light:"#ff9d76",mid:"#ff6b35",dark:"#cc4010"},
+   desc:"You\u2019re not convinced yet \u2014 and honestly, fair. Come find us at the booth, ask the hard questions, and let us change your mind. We love a challenge."}
+];
+
+function charSVG(p){
+  var l=p.light,m=p.mid,d=p.dark;
+  return '<svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg" style="width:115px;height:150px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.5))">'
+    +'<ellipse cx="50" cy="144" rx="21" ry="4.5" fill="rgba(0,0,0,.25)"/>'
+    // head
+    +'<polygon points="50,4 64,14 62,30 50,37 38,30 36,14" fill="#f5c28a"/>'
+    +'<polygon points="50,4 64,14 50,16" fill="#e0a870"/>'
+    +'<polygon points="64,14 62,30 50,16" fill="#f2bc80"/>'
+    +'<polygon points="62,30 50,37 50,16" fill="#dba060"/>'
+    +'<polygon points="38,30 50,37 50,16" fill="#e8b078"/>'
+    +'<polygon points="36,14 38,30 50,16" fill="#f0c082"/>'
+    +'<polygon points="50,4 36,14 50,16" fill="#e0b060"/>'
+    // hair (type color)
+    +'<polygon points="50,4 64,14 57,5" fill="'+l+'"/>'
+    +'<polygon points="50,4 36,14 43,5" fill="'+d+'"/>'
+    +'<polygon points="43,5 57,5 50,4" fill="'+m+'"/>'
+    // neck
+    +'<polygon points="45,37 55,37 56,44 44,44" fill="#dfa870"/>'
+    // body
+    +'<polygon points="28,44 72,44 74,96 26,96" fill="'+m+'"/>'
+    +'<polygon points="28,44 50,44 47,96 26,96" fill="'+d+'"/>'
+    +'<polygon points="72,44 50,44 53,96 74,96" fill="'+l+'"/>'
+    // left arm
+    +'<polygon points="27,46 13,83 22,87 34,52" fill="'+d+'"/>'
+    +'<ellipse cx="17" cy="85" rx="5" ry="3.5" fill="#e0a870"/>'
+    // right arm
+    +'<polygon points="73,46 87,83 78,87 66,52" fill="'+l+'"/>'
+    +'<ellipse cx="83" cy="85" rx="5" ry="3.5" fill="#f5c28a"/>'
+    // left leg
+    +'<polygon points="35,96 50,96 48,131 33,131" fill="'+d+'"/>'
+    // right leg
+    +'<polygon points="50,96 65,96 67,131 52,131" fill="'+m+'"/>'
+    // shoes
+    +'<polygon points="33,131 48,131 45,141 29,141" fill="#1a1a2e"/>'
+    +'<polygon points="52,131 67,131 69,141 54,141" fill="#1a1a2e"/>'
+    +'</svg>';
+}
+
+function mkTypeCard(tp){
+  var p=tp.palette;
+  return '<div class="type-card">'
+    +'<div class="char-area" style="background:linear-gradient(160deg,'+d(p.dark,0.9)+','+p.mid+' 55%,'+d(p.light,0.85)+')">'
+    +'<div class="char-area-deco"></div>'
+    +charSVG(p)
+    +'</div>'
+    +'<div class="type-info-wrap">'
+    +'<div class="type-sublabel">YOUR PERI TYPE</div>'
+    +'<div class="type-code" style="color:'+tp.color+'">'+tp.code+'</div>'
+    +'<div class="type-name">'+tp.title+'</div>'
+    +'<div class="type-tag-pill" style="background:'+tp.color+'18;color:'+tp.color+'">'+tp.tag+'</div>'
+    +'<p class="type-desc">'+tp.desc+'</p>'
+    +'</div>'
+    +'</div>';
+}
+
+function d(hex,op){
+  // returns hex with opacity as rgba
+  var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return 'rgba('+r+','+g+','+b+','+op+')';
+}
+
+function getPeriType(a){
+  var r=a.reaction!==undefined?a.reaction:-1;
+  var w=a.wtp!==undefined?a.wtp:-1;
+  var reach=a.reach!==undefined?a.reach:-1;
+  if(r===3)return 4;
+  if(r===2)return 3;
+  if(reach===2)return 2;
+  if(r===0&&w>=1)return 0;
+  return 1;
+}
+
+var ci=0,score=0,sel=null,rev=false,ans={},sent=false;
+var app=document.getElementById("app");
+
+function submit(){
+  if(!SHEET_URL||SHEET_URL==="")return;
+  var t=TYPES[getPeriType(ans)];
+  var d={score:score,
+    name:ans.name||"\u2014",
+    biztype:LBL.biztype[ans.biztype]||"\u2014",
+    experience:LBL.experience[ans.experience]||"\u2014",
+    painpoint:LBL.painpoint[ans.painpoint]||"\u2014",
+    reach:LBL.reach[ans.reach]||"\u2014",
+    reaction:LBL.reaction[ans.reaction]||"\u2014",
+    wtp:LBL.wtp[ans.wtp]||"\u2014",
+    peritype:t.title};
+  fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)}).catch(function(){});
+}
+
+function draw(){
+  var s=SC[ci],tot=SC.length-2,h="";
+  if(ci>0&&s.t!=="results"){
+    h='<div class="progress">';
+    for(var i=1;i<=tot;i++){var w=i===ci?28:16;var bg=i<ci?"#ff6b35":i===ci?"#ffd166":"rgba(255,255,255,.1)";
+      h+='<div class="pdot" style="width:'+w+'px;background:'+bg+'"></div>';}
+    h+="</div>";}
+
+  if(s.t==="name"){
+    var val=ans.name||"";
+    var dis=val.trim()===""?" disabled":"";
+    h+='<div class="screen sc-spread"><div class="emoji">\uD83D\uDC4B</div><h2 class="q">What\u2019s your name?</h2><p class="sub" style="margin-bottom:0">We\u2019ll keep track of who got the best score.</p><div style="width:100%"><input class="name-input" type="text" placeholder="Your name..." value="'+val+'" oninput="setName(this.value)" onkeydown="if(event.key===\'Enter\'&&this.value.trim())nxt()"/><div style="text-align:center"><button class="btn-nxt"'+dis+' onclick="nxt()">Let\u2019s Go \u2192</button></div></div></div>';
+  }
+  else if(s.t==="welcome"){
+    h+='<div class="screen sc-spread"><div class="emoji">\uD83E\uDD2F</div><h1 class="hero">Things You Don\u2019t Know About Marketing</h1><p class="sub" style="margin-bottom:0">A 2-minute quiz. Test your knowledge, share your take, and find out your Peri type.</p><button class="btn-go" onclick="nxt()">Let\u2019s Go \u2192</button></div>';
+  }
+  else if(s.t==="guess"){
+    var g="";
+    for(var i=0;i<s.o.length;i++){var cl="gb",ex="";
+      if(rev){cl+=" dis";if(i===s.c){cl+=" ok";ex=" \u2713";}else if(i===sel)cl+=" no";else cl+=" dim";}
+      g+='<button class="'+cl+'" '+(rev?'':'onclick="guess('+i+')"')+'>'+s.o[i]+ex+'</button>';}
+    var rv="";
+    if(rev){var pf=sel===s.c?"\uD83C\uDFAF Nice! ":"\uD83D\uDE2C Not quite. ";
+      rv='<div class="rvl"><p>'+pf+'The answer is <strong>'+s.o[s.c]+'</strong>. '+s.r+'</p></div><button class="btn-nxt" onclick="nxt()">Next \u2192</button>';}
+    h+='<div class="screen"><div class="emoji">'+s.e+'</div><p class="lbl lbl-o">Guess the answer</p><h2 class="q">'+s.q+'</h2><div class="gg">'+g+'</div>'+rv+'</div>';
+  }
+  else if(s.t==="poll"||s.t==="reaction"){
+    var p="";
+    var isSkip=s.sk===true;
+    var lastIdx=s.o.length-1;
+    for(var i=0;i<s.o.length;i++){
+      var isSkipBtn=isSkip&&i===lastIdx;
+      var cl="pb"+(isSkipBtn?" skip-btn":"");
+      if(sel!==null)cl+=" dis";if(sel===i)cl+=" sel";
+      var ck=sel===i?'<span style="font-size:16px;color:#ff6b35">\u2713</span>':"";
+      p+='<button class="'+cl+'" '+(sel!==null?'':'onclick="poll('+i+')"')+'><div class="pbl"><span>'+s.o[i]+'</span>'+ck+'</div></button>';}
+    var nx="";if(sel!==null)nx='<div style="animation:slideUp .3s ease"><button class="btn-nxt" onclick="nxt()">Next \u2192</button></div>';
+    h+='<div class="screen"><div class="emoji">'+s.e+'</div><p class="lbl lbl-p">'+(s.t==="reaction"?"React":"Your take")+'</p><h2 class="q">'+s.q+'</h2><div class="pl">'+p+'</div>'+nx+'</div>';
+  }
+  else if(s.t==="results"){
+    var tr=score===4?"\uD83C\uDFC6":score>=3?"\uD83C\uDF89":score>=2?"\uD83E\uDD13":"\uD83D\uDE02";
+    var msg=score===4?"Marketing genius detected.":score>=3?"Not bad \u2014 you know more than most!":score>=2?"The market is wilder than you thought, huh?":"Influencer marketing: 1, You: 0. (For now.)";
+    var pt=getPeriType(ans);var tp=TYPES[pt];
+    var secs=[{l:"Business type",k:"biztype"},{l:"Your experience",k:"experience"},{l:"How you reach customers",k:"reach"},{l:"Your reaction",k:"reaction"},{l:"Willing to pay",k:"wtp"}];
+    var sh="";for(var j=0;j<secs.length;j++){var sec=secs[j];if(ans[sec.k]!==undefined)
+      sh+='<div class="rs"><div class="rsl">'+sec.l+'</div><div class="rsa">'+LBL[sec.k][ans[sec.k]]+'</div></div>';}
+    var bd=sent?'<div class="badge">\u2713 Response recorded \u2014 thank you!</div>':"";
+    var typeCard=mkTypeCard(tp);
+    h+='<div class="screen"><div class="emoji">'+tr+'</div><h1 class="hero" style="font-size:34px;margin-bottom:6px">'+score+'/4 Correct!</h1><p class="sub" style="margin-bottom:20px">'+msg+'</p>'+typeCard+'<div class="rc"><div class="rch">Your Answers</div>'+sh+bd+'</div><div class="pit"><p><strong>We\u2019re building Peri.</strong> An AI agent that runs your entire influencer campaign \u2014 from discovery to booking to reporting. Come find us!</p></div><button class="btn-rst" onclick="restart()">\u2190 Play Again</button></div>';
+  }
+  app.innerHTML=h;
+}
+
+window.setName=function(v){ans.name=v;var btn=document.querySelector('.btn-nxt');if(btn)btn.disabled=v.trim()==="";};
+window.guess=function(i){if(rev)return;sel=i;rev=true;if(i===SC[ci].c)score++;draw();};
+window.poll=function(i){if(sel!==null)return;sel=i;ans[SC[ci].k]=i;draw();if(SC[ci].sk&&i===SC[ci].o.length-1)setTimeout(nxt,350);};
+window.nxt=function(){
+  if(ci===SC.length-2){submit();sent=true;}
+  ci++;sel=null;rev=false;
+  app.style.opacity=0;app.style.transition="opacity .2s";
+  setTimeout(function(){draw();app.style.opacity=1;},200);
+};
+window.restart=function(){ci=0;score=0;sel=null;rev=false;ans={};sent=false;
+  app.style.opacity=0;setTimeout(function(){draw();app.style.opacity=1;},200);};
+
+draw();
+</script>
+</body>
+</html>
